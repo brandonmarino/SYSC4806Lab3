@@ -6,8 +6,8 @@ class WebSpellChecker < Spellchecker
   end
 
   def known (words)
-    DictionaryWord.where('word in (:words)', list: words)
-			.order(count: :word)
+    DictionaryWord.where('word in (:words)', words: words)
+			.order(count: :desc)
 			.pluck(:word)
   end
 end
