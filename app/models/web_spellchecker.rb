@@ -5,8 +5,10 @@ class WebSpellChecker < Spellchecker
     
   end
 
-  def correct (w)
-    return w #["testing","purposes"]
+  def known (words)
+    DictionaryWord.where('word in (:words)', list: words)
+			.order(count: :word)
+			.pluck(:word)
   end
 end
 
